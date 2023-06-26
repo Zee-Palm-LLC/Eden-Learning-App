@@ -1,0 +1,44 @@
+name: eden_learning_app
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  flutter: 
+    sdk: flutter
+  flutter_screenutil: ^5.7.0
+  flutter_svg: ^2.0.5
+  surf_lint_rules: ^2.1.0
+  smooth_page_indicator: ^1.1.0
+  animate_do: ^3.0.2
+  flutter_swipe_button: ^2.1.1+1
+  confetti: ^0.7.0
+  flutter_staggered_animations: ^1.1.1
+  fl_chart: ^0.62.0
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+
+  fonts:
+    - family: Hanken Grotesk
+      fonts:
+        - asset: assets/fonts/HankenGrotesk-Regular.ttf
+        - asset: assets/fonts/HankenGrotesk-Bold.ttf
+        - asset: assets/fonts/HankenGrotesk-ExtraLight.ttf
+        - asset: assets/fonts/HankenGrotesk-Light.ttf
+        - asset: assets/fonts/HankenGrotesk-Medium.ttf
+
+

@@ -1,0 +1,32 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: 
+    - dev
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.7.x"
+          channel: "stable"
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build APK
+        run: flutter build apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+         name: EDEN
+         path: build/app/outputs/flutter-apk/app-release.apk

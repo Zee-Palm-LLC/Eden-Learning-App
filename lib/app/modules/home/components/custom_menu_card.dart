@@ -1,0 +1,46 @@
+import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class CustomMenuCard extends StatelessWidget {
+  final bool isSelected;
+  final VoidCallback onTap;
+  final String title;
+  final String icon;
+
+  const CustomMenuCard({
+    required this.isSelected,
+    required this.onTap,
+    required this.icon,
+    required this.title,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedButton(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            height: 60.h,
+            width: 60.w,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isSelected
+                  ? AppColors.kWhite
+                  : AppColors.kPrimary.withOpacity(0.15),
+              boxShadow: isSelected ? [AppColors.defaultShadow] : null,
+            ),
+            child: SvgPicture.asset(icon),
+          ),
+          SizedBox(height: 10.h),
+          Text(title, style: AppTypography.kLight14),
+        ],
+      ),
+    );
+  }
+}

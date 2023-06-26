@@ -1,0 +1,25 @@
+import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_swipe_button/flutter_swipe_button.dart';
+
+class CustomSwipeButton extends StatelessWidget {
+  final VoidCallback onSwipe;
+  const CustomSwipeButton({required this.onSwipe, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SwipeButton(
+      borderRadius: BorderRadius.circular(8),
+      activeTrackColor: Colors.transparent,
+      width: double.maxFinite,
+      thumb: Padding(
+        padding: EdgeInsets.all(15.h),
+        child: SvgPicture.asset(AppAssets.kArrowBackForward),
+      ),
+      child: const SizedBox(),
+      onSwipe: onSwipe,
+    );
+  }
+}
