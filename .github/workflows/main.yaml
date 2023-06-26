@@ -43,6 +43,8 @@ jobs:
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
           tag_name: v1.0.0
-          release_name: Release v1.0.0
+          name: Release v1.0.0
           body: |
             This is the release notes for v1.0.0.
+          permissions:
+            contents: write
