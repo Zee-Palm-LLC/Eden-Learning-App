@@ -46,5 +46,7 @@ jobs:
           name: Release v1.0.0
           body: |
             This is the release notes for v1.0.0.
+          env:
+            GITHUB_TOKEN: ${{ secrets.EDEN_TOKEN }}
           permissions:
             contents: write
