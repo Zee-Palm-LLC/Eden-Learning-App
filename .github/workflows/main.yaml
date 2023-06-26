@@ -38,15 +38,9 @@ jobs:
           name: EDEN
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
         with:
-          files: build/app/outputs/flutter-apk/app-release.apk
-          tag_name: v1.0.0
-          name: Release v1.0.0
-          body: |
-            This is the release notes for v1.0.0.
-          env:
-            GITHUB_TOKEN: ${{ secrets.EDEN_TOKEN }}
-          permissions:
-            contents: write
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.EDEN_TOKEN }}
