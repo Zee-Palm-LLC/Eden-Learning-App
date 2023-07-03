@@ -17,53 +17,51 @@ class CourseDetailView extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              FlexibleHeader(course: course),
-              SliverToBoxAdapter(
-                child: CourseBodyInfo(
-                  course: course,
-                ),
+        body: CustomScrollView(
+          slivers: [
+            FlexibleHeader(course: course),
+            SliverToBoxAdapter(
+              child: CourseBodyInfo(
+                course: course,
               ),
-              SliverPersistentHeader(
-                delegate: _TabBarHeaderDelegate(
-                  tabBar: TabBar(
-                    physics: const NeverScrollableScrollPhysics(),
-                    indicatorSize: TabBarIndicatorSize.label,
-                    labelPadding: EdgeInsets.only(top: 20.h),
-                    labelStyle: AppTypography.kBold20,
-                    unselectedLabelStyle: AppTypography.kBold18,
-                    indicatorColor: AppColors.kAccent1,
-                    tabs: const [
-                      Tab(
-                        text: 'Lessons',
-                      ),
-                      Tab(
-                        text: 'Reviews',
-                      ),
-                      Tab(
-                        text: 'Projects',
-                      ),
-                    ],
-                  ),
-                ),
-                pinned: true,
-              ),
-              SliverFillRemaining(
-                child: TabBarView(
+            ),
+            SliverPersistentHeader(
+              delegate: _TabBarHeaderDelegate(
+                tabBar: TabBar(
                   physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    CourseLessonsView(
-                      lesson: course.lessons,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  labelPadding: EdgeInsets.only(top: 20.h),
+                  labelStyle: AppTypography.kBold20,
+                  unselectedLabelStyle: AppTypography.kBold18,
+                  indicatorColor: AppColors.kAccent1,
+                  tabs: const [
+                    Tab(
+                      text: 'Lessons',
                     ),
-                    const ReviewsView(),
-                    const ProjectView(),
+                    Tab(
+                      text: 'Reviews',
+                    ),
+                    Tab(
+                      text: 'Projects',
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
+              pinned: true,
+            ),
+            SliverFillRemaining(
+              child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  CourseLessonsView(
+                    lesson: course.lessons,
+                  ),
+                  const ReviewsView(),
+                  const ProjectView(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -73,10 +71,10 @@ class CourseDetailView extends StatelessWidget {
 class _TabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
   @override
-  double get maxExtent => tabBar.preferredSize.height;
+  double get maxExtent => tabBar.preferredSize.height + 15;
 
   @override
-  double get minExtent => tabBar.preferredSize.height;
+  double get minExtent => tabBar.preferredSize.height + 15;
   _TabBarHeaderDelegate({required this.tabBar});
 
   @override
@@ -88,7 +86,7 @@ class _TabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
     bool isDarkMode(BuildContext context) =>
         Theme.of(context).brightness == Brightness.dark;
 
-    return ColoredBox(
+    return Container(
       color: isDarkMode(context) ? AppColors.kSecondary : Colors.white,
       child: tabBar,
     );
