@@ -3,6 +3,7 @@ import 'package:eden_learning_app/app/models/chat_model.dart';
 import 'package:eden_learning_app/app/modules/message/components/chat_bubble.dart';
 import 'package:eden_learning_app/app/modules/message/components/message_appbar.dart';
 import 'package:eden_learning_app/app/modules/message/components/message_field.dart';
+import 'package:eden_learning_app/app/modules/profile/components/profile_image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -42,16 +43,9 @@ class ConversationView extends StatelessWidget {
                   children: [
                     Hero(
                       tag: chat.imageURL + chat.time,
-                      child: Container(
-                        height: 60.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.r),
-                          image: DecorationImage(
-                            image: NetworkImage(chat.imageURL),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      child: ProfileImageCard(
+                        image: chat.imageURL,
+                        size: 60.h,
                       ),
                     ),
                     SizedBox(width: 15.w),

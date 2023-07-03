@@ -62,4 +62,20 @@ class AppAssets {
   static String kContrast = 'assets/images/contrast.png';
   static String kRepetition = 'assets/images/repetition.png';
   static String kSymmetry = 'assets/images/symmetry.png';
+  static String kUser1 = 'assets/images/user1.jpg';
+  static String kUser2 = 'assets/images/user2.jpg';
+  static String kUser3 = 'assets/images/user3.jpg';
+  static String kUser4 = 'assets/images/user4.jpg';
+  static String kUser5 = 'assets/images/user5.jpg';
+  static String kUser6 = 'assets/images/user6.jpg';
+  static String kUser7 = 'assets/images/user7.jpg';
+  static String kNoData = 'assets/images/no_data.png';
+  static String kOnboarding1 = 'assets/images/onboarding_1.png';
+  static String kOnboarding2 = 'assets/images/onboarding_2.png';
+  static String kOnboarding3 = 'assets/images/onboarding_3.png';
+  static String kStudent = 'assets/images/student.png';
+  static String kTeacher = 'assets/images/teacher.png';
+  static String kStoreSetup = 'assets/images/store_setup.png';
+  static String kStoreSet = 'assets/images/store_set.png';
+  static String kProject = 'assets/images/project.png';
 }

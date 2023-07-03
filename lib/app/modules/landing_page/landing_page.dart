@@ -6,7 +6,6 @@ import 'package:eden_learning_app/app/modules/my_courses/my_courses_view.dart';
 import 'package:eden_learning_app/app/modules/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

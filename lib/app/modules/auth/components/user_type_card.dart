@@ -7,10 +7,12 @@ class UserTypeCard extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final bool isSelected;
+  final String image;
   const UserTypeCard({
     required this.onTap,
     required this.isSelected,
     required this.text,
+    required this.image,
     super.key,
   });
 
@@ -37,15 +39,22 @@ class UserTypeCard extends StatelessWidget {
                     : AppColors.kWhite,
             boxShadow: [AppColors.defaultShadow],
           ),
-          child: Text(
-            text,
-            style: AppTypography.kBold16.copyWith(
-              color: isSelected
-                  ? AppColors.kWhite
-                  : isDarkMode(context)
-                      ? Colors.white
-                      : AppColors.kSecondary,
-            ),
+          child: Column(
+            children: [
+              Text(
+                text,
+                style: AppTypography.kBold16.copyWith(
+                  color: isSelected
+                      ? AppColors.kWhite
+                      : isDarkMode(context)
+                          ? Colors.white
+                          : AppColors.kSecondary,
+                ),
+              ),
+              const Spacer(),
+              Image.asset(image),
+              const Spacer(),
+            ],
           ),
         ),
       ),

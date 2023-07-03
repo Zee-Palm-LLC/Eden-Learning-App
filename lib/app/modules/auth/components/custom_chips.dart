@@ -25,7 +25,7 @@ class CustomChips extends StatelessWidget {
         Theme.of(context).brightness == Brightness.dark;
 
     return FadeIn(
-      delay: const Duration(milliseconds: 500) * index,
+      delay: const Duration(milliseconds: 200) * index,
       child: AnimatedButton(
         onTap: onTap,
         child: PrimaryContainer(

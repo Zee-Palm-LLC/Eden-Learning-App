@@ -48,6 +48,7 @@ class _MessageViewState extends State<MessageView> {
                     padding: EdgeInsets.all(20.h),
                     child: SearchField(
                       controller: _searchController,
+                      isEnabled: true,
                     ),
                   ),
                   Padding(

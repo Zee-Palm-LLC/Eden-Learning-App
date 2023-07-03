@@ -6,9 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class SettingsView extends StatelessWidget {
+class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
 
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
+  bool isNotification = true;
+  bool isDownloadAll = true;
   @override
   Widget build(BuildContext context) {
     bool isDarkMode(BuildContext context) =>
@@ -60,8 +67,12 @@ class SettingsView extends StatelessWidget {
               icon: AppAssets.kNotifications,
               isSwitch: true,
               title: 'Notifications',
-              switchValue: true,
-              onChanged: (value) {},
+              switchValue: isNotification,
+              onChanged: (value) {
+                setState(() {
+                  isNotification = value;
+                });
+              },
             ),
             const Divider(),
             GetBuilder<ThemeController>(
@@ -89,8 +100,12 @@ class SettingsView extends StatelessWidget {
               icon: AppAssets.kDownload,
               isSwitch: true,
               title: 'Download courses',
-              switchValue: true,
-              onChanged: (value) {},
+              switchValue: isDownloadAll,
+              onChanged: (value) {
+                setState(() {
+                  isDownloadAll = value;
+                });
+              },
             ),
             const Divider(),
             SettingTile(

@@ -15,10 +15,12 @@ class FlexibleHeader extends StatelessWidget {
       expandedHeight: 365.h,
       automaticallyImplyLeading: false,
       flexibleSpace: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          double percent = (constraints.maxHeight - kToolbarHeight) / (365.h - kToolbarHeight);
-          double scale = 1.0 - percent.clamp(0.0, 1.0) * 0.3; // Adjust the scaling factor as needed
-
+        builder: (context, constraints) {
+         final percent = (constraints.maxHeight - kToolbarHeight) /
+              (365.h - kToolbarHeight);
+          final scale = 1.0 -
+              percent.clamp(0.0, 1.0) *
+                  0.3; 
           return Stack(
             fit: StackFit.expand,
             children: [
@@ -36,7 +38,7 @@ class FlexibleHeader extends StatelessWidget {
               ),
               Positioned(
                 left: AppSpacing.tenHorizontal,
-                top: AppSpacing.fortyVertical,
+                top: AppSpacing.twentyVertical,
                 child: CustomIconButton(
                   onTap: () {
                     Get.back<void>();
@@ -48,7 +50,7 @@ class FlexibleHeader extends StatelessWidget {
               ),
               Positioned(
                 right: AppSpacing.tenHorizontal,
-                top: AppSpacing.fortyVertical,
+                top: AppSpacing.twentyVertical,
                 child: CustomIconButton(
                   iconColor: AppColors.kWhite,
                   color: AppColors.kPrimary.withOpacity(0.4),
@@ -56,7 +58,6 @@ class FlexibleHeader extends StatelessWidget {
                   onTap: () {},
                 ),
               ),
-            
             ],
           );
         },

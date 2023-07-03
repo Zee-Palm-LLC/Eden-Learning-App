@@ -1,6 +1,7 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/models/course.dart';
 import 'package:eden_learning_app/app/modules/course_detail/course_detail_view.dart';
+import 'package:eden_learning_app/app/modules/home/components/saved_icon.dart';
 import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,11 +41,7 @@ class CourseCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  child: PrimaryContainer(
-                    padding: EdgeInsets.all(12.h),
-                    color: AppColors.kPrimary.withOpacity(0.08),
-                    child: SvgPicture.asset(AppAssets.kBookMark),
-                  ),
+                  child: SavedIcon(course: course),
                 ),
               ),
             ),

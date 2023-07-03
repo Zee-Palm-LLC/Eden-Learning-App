@@ -1,5 +1,6 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/data/helpers/data/dummy_list.dart';
+import 'package:eden_learning_app/app/modules/profile/components/profile_image_card.dart';
 import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,16 +19,9 @@ class ProjectsCard extends StatelessWidget {
             padding: EdgeInsets.all(12.h),
             child: Row(
               children: [
-                Container(
-                  height: 50.h,
-                  width: 50.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSpacing.radiusTen),
-                    image: DecorationImage(
-                      image: NetworkImage(userImages[1]),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                ProfileImageCard(
+                  size: 50.h,
+                  image: AppAssets.kUser5,
                 ),
                 SizedBox(width: 15.w),
                 Column(
@@ -53,8 +47,8 @@ class ProjectsCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.h),
-          Image.network(
-            'https://generatestatus.com/wp-content/uploads/2020/01/Fake-Instagram-Post-Generator.jpg',
+          Image.asset(
+            AppAssets.kProject,
             fit: BoxFit.cover,
             height: 200.h,
             width: double.maxFinite,

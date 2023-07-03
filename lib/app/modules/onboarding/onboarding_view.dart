@@ -42,7 +42,18 @@ class _OnboardingViewState extends State<OnboardingView> {
           : null,
       body: Column(
         children: [
-          const WaveCard(),
+          Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              const WaveCard(),
+              Positioned(
+                top: 100.h,
+                child: Image.asset(onboardingList[_currentIndex].image),
+              ),
+            ],
+          ),
+          SizedBox(height: 90.h),
           Expanded(
             child: PageView.builder(
               controller: _pageController,

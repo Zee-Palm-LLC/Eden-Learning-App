@@ -5,7 +5,6 @@ import 'package:eden_learning_app/app/modules/course_detail/components/projects_
 import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProjectView extends StatelessWidget {
   const ProjectView({super.key});

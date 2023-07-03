@@ -21,6 +21,8 @@ class _SetupStoreViewState extends State<SetupStoreView> {
       child: Column(
         children: [
           const Spacer(),
+          Image.asset(AppAssets.kStoreSetup),
+          SizedBox(height: 90.h),
           FadeInRight(
             duration: const Duration(milliseconds: 1000),
             child: Text(

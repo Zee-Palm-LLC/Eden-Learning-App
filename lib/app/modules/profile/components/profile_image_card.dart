@@ -17,7 +17,7 @@ class ProfileImageCard extends StatelessWidget {
         image: DecorationImage(
           image: image == null
               ? AssetImage(AppAssets.kTeacher1)
-              : NetworkImage(image!) as ImageProvider,
+              : AssetImage(image!) as ImageProvider,
           fit: BoxFit.cover,
         ),
       ),

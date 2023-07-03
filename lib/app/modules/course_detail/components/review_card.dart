@@ -18,8 +18,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               ProfileImageCard(
                 size: 50.h,
-                image:
-                    'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60',
+                image: AppAssets.kUser3,
               ),
               SizedBox(width: 12.w),
               Column(

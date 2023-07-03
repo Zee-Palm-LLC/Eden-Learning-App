@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ThemeController extends GetxController {
-  String theme = ThemeOptions.dark;
+  String theme = ThemeOptions.light;
 
   @override
   void onInit() {
@@ -11,7 +11,7 @@ class ThemeController extends GetxController {
   }
 
   Future<void> getThemeState() async {
-    return setTheme(ThemeOptions.dark);
+    return setTheme(ThemeOptions.light);
   }
 
   Future<void> setTheme(String value) async {

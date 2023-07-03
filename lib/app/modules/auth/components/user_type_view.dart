@@ -57,6 +57,7 @@ class _UserTypeViewState extends State<UserTypeView> {
                         widget.onUserTypeSelected?.call(userType);
                       },
                       isSelected: userType == UserType.teacher,
+                      image: AppAssets.kTeacher,
                       text: UserType.teacher.name.capitalizeFirst.toString(),
                     ),
                   ),
@@ -71,6 +72,7 @@ class _UserTypeViewState extends State<UserTypeView> {
                         widget.onUserTypeSelected?.call(userType);
                       },
                       isSelected: userType == UserType.student,
+                      image: AppAssets.kStudent,
                       text: UserType.student.name.capitalizeFirst.toString(),
                     ),
                   ),

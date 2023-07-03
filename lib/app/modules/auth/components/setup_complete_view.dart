@@ -30,6 +30,7 @@ class SetupCompleteView extends StatelessWidget {
               style: AppTypography.kLight16,
             ),
           ),
+          Image.asset(AppAssets.kStoreSet),
           const Spacer(),
         ],
       ),

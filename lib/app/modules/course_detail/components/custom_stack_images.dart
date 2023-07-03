@@ -23,7 +23,7 @@ class CustomStackImages extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   image: DecorationImage(
-                    image: NetworkImage(images[index]),
+                    image: AssetImage(images[index]),
                     fit: BoxFit.cover,
                   ),
                 ),

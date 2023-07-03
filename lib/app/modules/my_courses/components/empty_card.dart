@@ -13,6 +13,7 @@ class EmptyCard extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset(AppAssets.kNoData),
         Text(
           'It’s pretty lonely here,\ndon’t you think?',
           style: AppTypography.kBold24,

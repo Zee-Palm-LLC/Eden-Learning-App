@@ -17,53 +17,53 @@ class CourseDetailView extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            FlexibleHeader(course: course),
-            SliverToBoxAdapter(
-              child: CourseBodyInfo(
-                course: course,
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              FlexibleHeader(course: course),
+              SliverToBoxAdapter(
+                child: CourseBodyInfo(
+                  course: course,
+                ),
               ),
-            ),
-            SliverPersistentHeader(
-              delegate: _TabBarHeaderDelegate(
-                tabBar: TabBar(
+              SliverPersistentHeader(
+                delegate: _TabBarHeaderDelegate(
+                  tabBar: TabBar(
+                    physics: const NeverScrollableScrollPhysics(),
+                    indicatorSize: TabBarIndicatorSize.label,
+                    labelPadding: EdgeInsets.only(top: 20.h),
+                    labelStyle: AppTypography.kBold20,
+                    unselectedLabelStyle: AppTypography.kBold18,
+                    indicatorColor: AppColors.kAccent1,
+                    tabs: const [
+                      Tab(
+                        text: 'Lessons',
+                      ),
+                      Tab(
+                        text: 'Reviews',
+                      ),
+                      Tab(
+                        text: 'Projects',
+                      ),
+                    ],
+                  ),
+                ),
+                pinned: true,
+              ),
+              SliverFillRemaining(
+                child: TabBarView(
                   physics: const NeverScrollableScrollPhysics(),
-                  indicatorSize: TabBarIndicatorSize.label,
-                  labelPadding: EdgeInsets.only(top: 20.h),
-                  labelStyle: AppTypography.kBold20,
-                  labelColor: AppColors.kSecondary,
-                  unselectedLabelStyle: AppTypography.kBold18,
-                  unselectedLabelColor: AppColors.kSecondary.withOpacity(0.8),
-                  indicatorColor: AppColors.kAccent1,
-                  tabs: const [
-                    Tab(
-                      text: 'Lessons',
+                  children: [
+                    CourseLessonsView(
+                      lesson: course.lessons,
                     ),
-                    Tab(
-                      text: 'Reviews',
-                    ),
-                    Tab(
-                      text: 'Projects',
-                    ),
+                    const ReviewsView(),
+                    const ProjectView(),
                   ],
                 ),
               ),
-              pinned: true,
-            ),
-            SliverFillRemaining(
-              child: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  CourseLessonsView(
-                    lesson: course.lessons,
-                  ),
-                  const ReviewsView(),
-                  const ProjectView(),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -85,8 +85,11 @@ class _TabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return ColoredBox(
-      color: Colors.white,
+      color: isDarkMode(context) ? AppColors.kSecondary : Colors.white,
       child: tabBar,
     );
   }
