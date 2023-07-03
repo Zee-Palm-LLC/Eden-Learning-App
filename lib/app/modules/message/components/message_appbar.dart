@@ -32,7 +32,7 @@ class MessageAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: AppAssets.kAdd,
           color: isDarkMode(context) ? Colors.black : iconColor,
         ),
-        SizedBox(width: 20.w),
+        SizedBox(width: 10.w),
       ],
     );
   }

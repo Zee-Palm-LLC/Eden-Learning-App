@@ -118,6 +118,7 @@ class _StatisticsViewState extends State<StatisticsView> {
             height: 150.h,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
+              clipBehavior: Clip.none,
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 return SaleCategoryCard(
@@ -136,6 +137,7 @@ class _StatisticsViewState extends State<StatisticsView> {
             width: double.maxFinite,
             child: ActiveUserChart(),
           ),
+          SizedBox(height: AppSpacing.twentyVertical),
         ]),
       ),
     );

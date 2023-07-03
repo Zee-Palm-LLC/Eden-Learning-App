@@ -30,10 +30,16 @@ class CourseDetailView extends StatelessWidget {
                 tabBar: TabBar(
                   physics: const NeverScrollableScrollPhysics(),
                   indicatorSize: TabBarIndicatorSize.label,
+                  indicatorWeight: 3.h,
+                  indicatorPadding: EdgeInsets.only(top: 60.h),
                   labelPadding: EdgeInsets.only(top: 20.h),
                   labelStyle: AppTypography.kBold20,
                   unselectedLabelStyle: AppTypography.kBold18,
                   indicatorColor: AppColors.kAccent1,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: AppColors.kAccent1,
+                  ),
                   tabs: const [
                     Tab(
                       text: 'Lessons',

@@ -45,6 +45,8 @@ class _CustomProgressBarState extends State<CustomProgressBar>
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return AnimatedBuilder(
       animation: _progressAnimation,
       builder: (context, child) {
@@ -65,7 +67,11 @@ class _CustomProgressBarState extends State<CustomProgressBar>
             ),
             Text(
               widget.text,
-              style: AppTypography.kBold20.copyWith(color: AppColors.kWhite),
+              style: AppTypography.kBold20.copyWith(
+                color: isDarkMode(context)
+                    ? AppColors.kWhite
+                    : AppColors.kSecondary,
+              ),
             ),
           ],
         );

@@ -17,7 +17,7 @@ class CourseOwnerCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.r),
             image: DecorationImage(
-              image: NetworkImage(user.profileImage),
+              image: AssetImage(AppAssets.kUser5),
               fit: BoxFit.cover,
             ),
           ),

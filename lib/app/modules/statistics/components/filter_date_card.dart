@@ -23,12 +23,13 @@ class FilterDateCard extends StatelessWidget {
             text,
             style: AppTypography.kBold18,
           ),
+          SizedBox(height: 2.h),
           if (isSelected)
             Container(
               height: 6.h,
               width: 50.w,
               decoration: BoxDecoration(
-                color: AppColors.kAccent2,
+                color: AppColors.kPrimary,
                 borderRadius: BorderRadius.circular(20.r),
               ),
             )

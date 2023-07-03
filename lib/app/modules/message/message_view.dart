@@ -33,64 +33,70 @@ class _MessageViewState extends State<MessageView> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.vertical(
-              top: Radius.circular(30.r),
+              top: Radius.circular(AppSpacing.radiusThirty),
             ),
             color: AppColors.kPrimary.withOpacity(0.4),
           ),
-          child: ScrollConfiguration(
-            behavior: const ScrollBehavior().copyWith(overscroll: false),
-            child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.h),
-                    child: SearchField(
-                      controller: _searchController,
-                      isEnabled: true,
+          child: ClipRRect(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(AppSpacing.radiusThirty),
+            ),
+            child: ScrollConfiguration(
+              behavior: const ScrollBehavior().copyWith(overscroll: false),
+              child: SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20.h),
+                      child: SearchField(
+                        controller: _searchController,
+                        isEnabled: true,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(20..h),
-                    child: Text('10 are online', style: AppTypography.kBold18),
-                  ),
-                  SizedBox(
-                    height: 90.h,
-                    child: ListView.separated(
-                      padding:
-                          EdgeInsets.only(left: AppSpacing.twentyHorizontal),
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return OnlineCard(
-                          online: onlinePeople[index],
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          SizedBox(width: 15.w),
-                      itemCount: onlinePeople.length,
+                    Padding(
+                      padding: EdgeInsets.all(20..h),
+                      child:
+                          Text('10 are online', style: AppTypography.kBold18),
                     ),
-                  ),
-                  SizedBox(
-                    height: AppSpacing.thirtyVertical,
-                  ),
-                  ColoredBox(
-                    color: isDarkMode(context) ? Colors.black : Colors.white,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: 8,
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.all(AppSpacing.twentyHorizontal),
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 30.h),
-                      itemBuilder: (content, index) {
-                        return ChatCard(
-                          chat: chatList[index],
-                        );
-                      },
+                    SizedBox(
+                      height: 90.h,
+                      child: ListView.separated(
+                        padding:
+                            EdgeInsets.only(left: AppSpacing.twentyHorizontal),
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return OnlineCard(
+                            online: onlinePeople[index],
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            SizedBox(width: 15.w),
+                        itemCount: onlinePeople.length,
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: AppSpacing.thirtyVertical,
+                    ),
+                    ColoredBox(
+                      color: isDarkMode(context) ? Colors.black : Colors.white,
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: 8,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.all(AppSpacing.twentyHorizontal),
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: 30.h),
+                        itemBuilder: (content, index) {
+                          return ChatCard(
+                            chat: chatList[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

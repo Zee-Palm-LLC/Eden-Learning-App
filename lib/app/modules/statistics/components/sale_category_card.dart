@@ -31,7 +31,8 @@ class SaleCategoryCard extends StatelessWidget {
           Text(
             category.name,
             style: AppTypography.kLight16.copyWith(
-              color: AppColors.kWhite,
+              color:
+                  isDarkMode(context) ? AppColors.kWhite : AppColors.kSecondary,
             ),
           ),
         ],
