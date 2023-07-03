@@ -49,6 +49,9 @@ class _PrimaryButtonState extends State<PrimaryButton>
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: () {
         _controller.forward().then((_) {
@@ -64,27 +67,28 @@ class _PrimaryButtonState extends State<PrimaryButton>
             reverseCurve: Curves.easeIn,
           ),
         ),
-        child: Card(
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Container(
-            height: widget.height ?? 60.h,
-            alignment: Alignment.center,
-            width: widget.width ?? double.maxFinite,
-            decoration: BoxDecoration(
-              color: widget.color ?? AppColors.kPrimary,
-              borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? AppSpacing.radiusTen,
-              ),
+        child: Container(
+          height: widget.height ?? 60.h,
+          alignment: Alignment.center,
+          width: widget.width ?? double.maxFinite,
+          decoration: BoxDecoration(
+            color: widget.color ??
+                (isDarkMode(context) ? Colors.black : AppColors.kPrimary),
+            boxShadow: [
+              if (isDarkMode(context))
+                AppColors.darkShadow
+              else
+                AppColors.defaultShadow,
+            ],
+            borderRadius: BorderRadius.circular(
+              widget.borderRadius ?? AppSpacing.radiusTen,
             ),
-            child: Text(
-              widget.text,
-              style: AppTypography.kBold20.copyWith(
-                color: widget.color == null ? Colors.white : Colors.black,
-                fontSize: widget.fontSize,
-              ),
+          ),
+          child: Text(
+            widget.text,
+            style: AppTypography.kBold20.copyWith(
+              color: widget.color == null ? Colors.white : Colors.black,
+              fontSize: widget.fontSize,
             ),
           ),
         ),

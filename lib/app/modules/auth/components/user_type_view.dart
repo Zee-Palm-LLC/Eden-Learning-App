@@ -18,6 +18,7 @@ class _UserTypeViewState extends State<UserTypeView> {
   UserType userType = UserType.teacher;
   @override
   Widget build(BuildContext context) {
+    
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(

@@ -19,70 +19,62 @@ class _CreateCourseViewState extends State<CreateCourseView> {
   bool _createLessons = true;
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.kWhite,
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: AppColors.kPrimary.withOpacity(0.08),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(
-            'Create a new course ',
-            style: AppTypography.kBold24.copyWith(color: AppColors.kSecondary),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create a new course '),
+      ),
+      body: Container(
+        margin: EdgeInsets.only(top: 20.h),
+        decoration: BoxDecoration(
+          color: AppColors.kPrimary.withOpacity(0.081),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(40.r),
           ),
         ),
-        body: DecoratedBox(
-          decoration: BoxDecoration(
-            color: AppColors.kPrimary.withOpacity(0.081),
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(40.r),
-            ),
-          ),
-          child: ListView(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(AppSpacing.twentyVertical),
-                child: Row(
-                  children: [
-                    ProfileImageCard(size: 50.h),
-                    Expanded(
-                      child: TextField(
-                        controller: TextEditingController(),
-                        decoration: const InputDecoration(
-                          hintText: 'What does your course entail?',
-                        ),
+        child: ListView(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(AppSpacing.twentyVertical),
+              child: Row(
+                children: [
+                  ProfileImageCard(size: 50.h),
+                  Expanded(
+                    child: TextField(
+                      controller: TextEditingController(),
+                      decoration: const InputDecoration(
+                        hintText: 'What does your course entail?',
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(height: AppSpacing.tenVertical),
-              AnimatedCrossFade(
-                duration: const Duration(milliseconds: 500),
-                firstChild: const CreateLessons(),
-                secondChild: const PublishCourseView(),
-                crossFadeState: _createLessons
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
+            ),
+            SizedBox(height: AppSpacing.tenVertical),
+            AnimatedCrossFade(
+              duration: const Duration(milliseconds: 500),
+              firstChild: const CreateLessons(),
+              secondChild: const PublishCourseView(),
+              crossFadeState: _createLessons
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: PrimaryButton(
+                onTap: () {
+                  if (_createLessons) {
+                    setState(() {
+                      _createLessons = false;
+                    });
+                  } else {
+                    Get.to<void>(() => const CoursePublished());
+                  }
+                },
+                text: _createLessons ? 'Continue' : 'Publish',
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: PrimaryButton(
-                  onTap: () {
-                    if (_createLessons) {
-                      setState(() {
-                        _createLessons = false;
-                      });
-                    } else {
-                      Get.to<void>(()=>const CoursePublished());
-                    }
-                  },
-                  text: _createLessons ? 'Continue' : 'Publish',
-                ),
-              ),
-              SizedBox(height: 100.h),
-            ],
-          ),
+            ),
+            SizedBox(height: 100.h),
+          ],
         ),
       ),
     );

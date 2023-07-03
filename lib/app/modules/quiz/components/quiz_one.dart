@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/quiz/components/course_definition_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -50,7 +51,7 @@ class _QuizOneState extends State<QuizOne> {
             itemCount: 3,
             controller: pageController,
             itemBuilder: (context, index) {
-              return ContrastCard(
+              return CourseDefinitionCard(
                 index: index,
                 currentPage: currentPage,
                 image: [
@@ -63,57 +64,6 @@ class _QuizOneState extends State<QuizOne> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ContrastCard extends StatelessWidget {
-  final double currentPage;
-  final int index;
-  final String image;
-
-  const ContrastCard({
-    required this.currentPage,
-    required this.index,
-    required this.image,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final value = (index - currentPage).abs().clamp(0.0, 1.0);
-    final isCenterCard = index == currentPage.round();
-
-    return Transform.rotate(
-      angle: pi * value,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Container(
-            height: 250.h,
-            width: 200.w,
-            margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.red,
-            ),
-          ),
-          if (isCenterCard)
-            Container(
-              height: 40.h,
-              width: 40.w,
-              margin: EdgeInsets.only(top: 251.h),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.kPrimary,
-              ),
-              child: const Icon(
-                Icons.check,
-                color: AppColors.kWhite,
-              ),
-            ),
-        ],
-      ),
     );
   }
 }

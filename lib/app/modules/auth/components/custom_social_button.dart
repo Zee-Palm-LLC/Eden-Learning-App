@@ -1,5 +1,6 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/modules/widgets/buttons/animated_button.dart';
+import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,28 +22,8 @@ class CustomSocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedButton(
       onTap: onTap,
-      child: Container(
-        height: 60.h,
-        alignment: Alignment.center,
-        margin: EdgeInsets.symmetric(
-          horizontal: margin ?? AppSpacing.twentyHorizontal,
-        ),
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.twentyHorizontal),
-        width: double.maxFinite,
-        decoration: BoxDecoration(
-          color: AppColors.kWhite,
-          border: Border.all(color: AppColors.kLine),
-          borderRadius: BorderRadius.circular(
-            AppSpacing.radiusTen,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.kSecondary.withOpacity(0.1),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
+      child: PrimaryContainer(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         child: Row(
           children: [
             SvgPicture.asset(icon),

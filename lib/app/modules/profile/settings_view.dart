@@ -1,3 +1,4 @@
+import 'package:eden_learning_app/app/controllers/theme_controller.dart';
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/modules/profile/components/setting_tile.dart';
 import 'package:eden_learning_app/app/modules/widgets/widgets.dart';
@@ -10,92 +11,103 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.kWhite,
-      child: Scaffold(
-        backgroundColor: AppColors.kPrimary.withOpacity(0.15),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: Padding(
-            padding: EdgeInsets.all(8.h),
-            child: CustomIconButton(
-              color: AppColors.kPrimary.withOpacity(0.14),
-              icon: AppAssets.kArrowBackIos,
-              onTap: () {
-                Get.back<void>();
-              },
-            ),
-          ),
-          centerTitle: true,
-          title: Text(
-            'Settings',
-            style: AppTypography.kBold24.copyWith(color: AppColors.kSecondary),
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
+    return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: EdgeInsets.all(8.h),
+          child: CustomIconButton(
+            color: isDarkMode(context)
+                ? Colors.black
+                : AppColors.kPrimary.withOpacity(0.14),
+            icon: AppAssets.kArrowBackIos,
+            onTap: () {
+              Get.back<void>();
+            },
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.all(20.h),
-          decoration: BoxDecoration(
-            color: AppColors.kWhite,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(30.r),
+        centerTitle: true,
+        title: const Text('Settings'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: Column(
+          children: [
+            SettingTile(
+              icon: AppAssets.kProfile,
+              title: 'Name',
+              subtitle: 'Emmy Elsner',
+              onTap: () {},
             ),
-          ),
-          child: Column(
-            children: [
-              SettingTile(
-                icon: AppAssets.kProfile,
-                title: 'Name',
-                subtitle: 'Emmy Elsner',
-                onTap: () {},
-              ),
-              const Divider(height: 0.5),
-              SettingTile(
-                icon: AppAssets.kEmail,
-                title: 'Email',
-                subtitle: 'e****@gmail.com',
-                onTap: () {},
-              ),
-              const Divider(height: 0.5),
-              SettingTile(
-                icon: AppAssets.kPassword,
-                title: 'Password',
-                subtitle: 'Last changed 3 months ago',
-                onTap: () {},
-              ),
-              const Divider(),
-              SettingTile(
-                icon: AppAssets.kNotifications,
-                isSwitch: true,
-                title: 'Notifications',
-              ),
-              const Divider(),
-              SettingTile(
-                icon: AppAssets.kTheme,
-                isSwitch: true,
-                title: 'Light Mode',
-              ),
-              const Divider(),
-              SettingTile(
-                icon: AppAssets.kDownload,
-                isSwitch: true,
-                title: 'Download courses',
-              ),
-              const Divider(),
-              SettingTile(
-                icon: AppAssets.kHelp,
-                title: 'Help & Feedback',
-                onTap: () {},
-              ),
-              const Divider(),
-              SettingTile(
-                icon: AppAssets.kPrivacy,
-                title: 'Privacy',
-                onTap: () {},
-              ),
-              const Spacer(),
-              PrimaryButton(onTap: () {}, text: 'Sign Out'),
-            ],
-          ),
+            const Divider(height: 0.5),
+            SettingTile(
+              icon: AppAssets.kEmail,
+              title: 'Email',
+              subtitle: 'e****@gmail.com',
+              onTap: () {},
+            ),
+            const Divider(height: 0.5),
+            SettingTile(
+              icon: AppAssets.kPassword,
+              title: 'Password',
+              subtitle: 'Last changed 3 months ago',
+              onTap: () {},
+            ),
+            const Divider(),
+            SettingTile(
+              icon: AppAssets.kNotifications,
+              isSwitch: true,
+              title: 'Notifications',
+              switchValue: true,
+              onChanged: (value) {},
+            ),
+            const Divider(),
+            GetBuilder<ThemeController>(
+              init: ThemeController(),
+              initState: (_) {},
+              builder: (_) {
+                final isLightMode = _.theme == 'light';
+                return SettingTile(
+                  icon: AppAssets.kTheme,
+                  isSwitch: true,
+                  title: 'Light Mode',
+                  switchValue: isLightMode,
+                  onChanged: (value) {
+                    if (isLightMode) {
+                      _.setTheme('dark');
+                    } else {
+                      _.setTheme('light');
+                    }
+                  },
+                );
+              },
+            ),
+            const Divider(),
+            SettingTile(
+              icon: AppAssets.kDownload,
+              isSwitch: true,
+              title: 'Download courses',
+              switchValue: true,
+              onChanged: (value) {},
+            ),
+            const Divider(),
+            SettingTile(
+              icon: AppAssets.kHelp,
+              title: 'Help & Feedback',
+              onTap: () {},
+            ),
+            const Divider(),
+            SettingTile(
+              icon: AppAssets.kPrivacy,
+              title: 'Privacy',
+              onTap: () {},
+            ),
+            const Spacer(),
+            PrimaryButton(onTap: () {}, text: 'Sign Out'),
+            SizedBox(height: 30.h),
+          ],
         ),
       ),
     );

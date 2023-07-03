@@ -20,4 +20,10 @@ class AppColors {
     blurRadius: 7,
     offset: const Offset(0, 5),
   );
+
+  static BoxShadow darkShadow = BoxShadow(
+    color: AppColors.kSecondary.withOpacity(0.2),
+    blurRadius: 7,
+    offset: const Offset(0, 5),
+  );
 }

@@ -18,13 +18,19 @@ class CustomIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return SmoothPageIndicator(
       controller: controller,
       count: dotsLength,
       onDotClicked: (index) {},
       effect: SlideEffect(
-        dotColor: AppColors.kSecondary.withOpacity(0.3),
-        activeDotColor: AppColors.kSecondary,
+        dotColor: isDarkMode(context)
+            ? AppColors.kWhite
+            : AppColors.kSecondary.withOpacity(0.3),
+        activeDotColor:
+            isDarkMode(context) ? AppColors.kPrimary : AppColors.kSecondary,
         dotHeight: height ?? 8.h,
         dotWidth: width ?? 8.w,
       ),

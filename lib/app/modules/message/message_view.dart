@@ -2,11 +2,10 @@ import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/models/chat_model.dart';
 import 'package:eden_learning_app/app/modules/home/components/search_field.dart';
 import 'package:eden_learning_app/app/modules/message/components/chat_card.dart';
+import 'package:eden_learning_app/app/modules/message/components/message_appbar.dart';
 import 'package:eden_learning_app/app/modules/message/components/online_card.dart';
-import 'package:eden_learning_app/app/modules/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class MessageView extends StatefulWidget {
   const MessageView({super.key});
@@ -19,48 +18,27 @@ class _MessageViewState extends State<MessageView> {
   final TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.kWhite,
-      child: Scaffold(
-        backgroundColor: Colors.brown.withOpacity(0.5),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: customOverlay,
-          leading: Padding(
-            padding: EdgeInsets.all(7.h),
-            child: CustomIconButton(
-              onTap: () {
-                Get.back<void>();
-              },
-              color: AppColors.kWhite.withOpacity(0.4),
-              icon: AppAssets.kArrowBackIos,
-            ),
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+    return Scaffold(
+      appBar: const MessageAppBar(),
+      body: Container(
+        margin: EdgeInsets.only(top: 20.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppSpacing.radiusThirty),
           ),
-          centerTitle: true,
-          title: Text('Messages', style: AppTypography.kBold24),
-          actions: [
-            CustomIconButton(
-              onTap: () {},
-              icon: AppAssets.kAdd,
-              color: AppColors.kWhite.withOpacity(0.40),
-            ),
-            SizedBox(width: 20.w),
-          ],
+          color: isDarkMode(context) ? Colors.black : Colors.white,
         ),
-        body: DecoratedBox(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.vertical(
-              top: Radius.circular(AppSpacing.radiusThirty),
+              top: Radius.circular(30.r),
             ),
-            color: Colors.white,
+            color: AppColors.kPrimary.withOpacity(0.4),
           ),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(30.r),
-              ),
-              color: AppColors.kPrimary.withOpacity(0.4),
-            ),
+          child: ScrollConfiguration(
+            behavior: const ScrollBehavior().copyWith(overscroll: false),
             child: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
               child: Column(
@@ -77,7 +55,7 @@ class _MessageViewState extends State<MessageView> {
                     child: Text('10 are online', style: AppTypography.kBold18),
                   ),
                   SizedBox(
-                    height: 85.h,
+                    height: 90.h,
                     child: ListView.separated(
                       padding:
                           EdgeInsets.only(left: AppSpacing.twentyHorizontal),
@@ -96,7 +74,7 @@ class _MessageViewState extends State<MessageView> {
                     height: AppSpacing.thirtyVertical,
                   ),
                   ColoredBox(
-                    color: Colors.white,
+                    color: isDarkMode(context) ? Colors.black : Colors.white,
                     child: ListView.separated(
                       shrinkWrap: true,
                       itemCount: 8,

@@ -1,4 +1,5 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,13 +15,8 @@ class PriceInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return PrimaryContainer(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.twentyHorizontal),
-      decoration: BoxDecoration(
-        color: AppColors.kWhite,
-        borderRadius: BorderRadius.circular(10.r),
-        boxShadow: [AppColors.defaultShadow],
-      ),
       child: Row(
         children: [
           Expanded(

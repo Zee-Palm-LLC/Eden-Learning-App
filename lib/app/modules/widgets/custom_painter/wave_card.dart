@@ -11,22 +11,30 @@ class WaveCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       height: height ?? 350.h,
       width: double.infinity,
       color: color ?? AppColors.kPrimary.withOpacity(0.15),
       child: CustomPaint(
-        painter: WavePainter(),
+        painter: WavePainter(
+          color: isDarkMode(context) ? AppColors.kSecondary : AppColors.kWhite,
+        ),
       ),
     );
   }
 }
 
 class WavePainter extends CustomPainter {
+  final Color color;
+
+  WavePainter({required this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.kWhite
+      ..color = color
       ..style = PaintingStyle.fill;
 
     final path = Path();

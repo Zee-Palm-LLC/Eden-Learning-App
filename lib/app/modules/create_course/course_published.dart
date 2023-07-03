@@ -1,4 +1,3 @@
-import 'package:confetti/confetti.dart';
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/modules/create_course/components/share_course_sheet.dart';
 import 'package:eden_learning_app/app/modules/widgets/buttons/buttons.dart';

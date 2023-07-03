@@ -1,5 +1,7 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/models/chat_model.dart';
+import 'package:eden_learning_app/app/modules/profile/components/profile_image_card.dart';
+import 'package:eden_learning_app/app/modules/widgets/custom_painter/curve_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,35 +14,33 @@ class OnlineCard extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 65.h,
-          width: 65.w,
+          height: 65.0.h,
+          width: 55.w,
           child: Stack(
-            alignment: Alignment.bottomRight,
             children: [
-              Container(
-                height: 60..h,
-                width: 60..w,
-                margin: const EdgeInsets.only(bottom: 5, right: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                    image: NetworkImage(online.image),
-                    fit: BoxFit.cover,
-                  ),
+              ClipPath(
+                clipper: CurveClipper(),
+                child: ProfileImageCard(
+                  image: online.image,
+                  size: 60.h,
                 ),
               ),
-              Container(
-                height: 15.h,
-                width: 15.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.kSuccess,
-                  border: Border.all(color: AppColors.kWhite, width: 3.w),
+              Positioned(
+                bottom:2,
+                right: 0,
+                child: Container(
+                  height: 14.h,
+                  width: 14.w,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.kSuccess,
+                  ),
                 ),
               ),
             ],
           ),
         ),
+       const Spacer(),
         Text(online.name, style: AppTypography.kLight14),
       ],
     );

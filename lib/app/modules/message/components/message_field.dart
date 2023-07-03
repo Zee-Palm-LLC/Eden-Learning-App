@@ -1,6 +1,6 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessageField extends StatelessWidget {
   const MessageField({super.key});
@@ -15,12 +15,7 @@ class MessageField extends StatelessWidget {
           top: Radius.circular(AppSpacing.radiusThirty),
         ),
       ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppColors.kWhite,
-          borderRadius: BorderRadius.circular(5.r),
-          boxShadow: [AppColors.defaultShadow],
-        ),
+      child: PrimaryContainer(
         child: TextFormField(
           decoration: InputDecoration(
             hintText: 'Type a Message',

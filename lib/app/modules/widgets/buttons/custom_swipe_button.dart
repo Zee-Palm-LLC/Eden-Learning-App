@@ -10,10 +10,15 @@ class CustomSwipeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return SwipeButton(
       borderRadius: BorderRadius.circular(8),
       activeTrackColor: Colors.transparent,
       width: double.maxFinite,
+      activeThumbColor:
+          isDarkMode(context) ? AppColors.kSecondary : AppColors.kPrimary,
       thumb: Padding(
         padding: EdgeInsets.all(15.h),
         child: SvgPicture.asset(AppAssets.kArrowBackForward),

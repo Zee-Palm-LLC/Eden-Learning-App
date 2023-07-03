@@ -22,19 +22,11 @@ class MyCoursesView extends StatelessWidget {
                     EdgeInsets.symmetric(horizontal: AppSpacing.tenHorizontal),
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: TabBar(
-                        physics: const NeverScrollableScrollPhysics(),
+                        physics:  NeverScrollableScrollPhysics(),
                         isScrollable: true,
-                        labelPadding: EdgeInsets.only(
-                          left: 10,
-                          right: AppSpacing.tenHorizontal,
-                        ),
-                        indicatorSize: TabBarIndicatorSize.label,
-                        labelStyle: AppTypography.kBold20,
-                        labelColor: AppColors.kSecondary,
-                        unselectedLabelColor: AppColors.kLightBrown,
-                        tabs: const [
+                        tabs: [
                           Tab(
                             text: 'My Courses',
                           ),

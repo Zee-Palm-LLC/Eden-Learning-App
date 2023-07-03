@@ -5,7 +5,6 @@ import 'package:eden_learning_app/app/modules/search/components/rating_card.dart
 import 'package:eden_learning_app/app/modules/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterSheet extends StatefulWidget {
@@ -21,6 +20,8 @@ class _FilterSheetState extends State<FilterSheet> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -43,7 +44,8 @@ class _FilterSheetState extends State<FilterSheet> {
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(30.r),
             ),
-            color: AppColors.kWhite,
+            color:
+                isDarkMode(context) ? AppColors.kSecondary : AppColors.kWhite,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -148,6 +150,7 @@ class _FilterSheetState extends State<FilterSheet> {
                 onTap: () {},
                 text: 'Filter',
               ),
+              SizedBox(height: 25.h),
             ],
           ),
         ),

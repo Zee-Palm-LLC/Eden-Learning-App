@@ -2,6 +2,7 @@ import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/modules/auth/components/auth_field.dart';
 import 'package:eden_learning_app/app/modules/auth/components/custom_social_button.dart';
 import 'package:eden_learning_app/app/modules/auth/components/divider_with_text.dart';
+import 'package:eden_learning_app/app/modules/widgets/animations/shake_animation.dart';
 import 'package:eden_learning_app/app/modules/widgets/widgets.dart';
 import 'package:eden_learning_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,12 @@ class SignInView extends StatefulWidget {
 
 class _SignInViewState extends State<SignInView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _shakeKey = GlobalKey<ShakeWidgetState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
@@ -48,13 +49,11 @@ class _SignInViewState extends State<SignInView> {
               AuthField(
                 controller: _emailController,
                 hintText: 'Enter Email',
-                onChanged: (value) {},
               ),
               SizedBox(height: AppSpacing.thirtyVertical),
               AuthField(
                 controller: _passwordController,
                 hintText: 'Enter Password',
-                onChanged: (value) {},
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -64,11 +63,21 @@ class _SignInViewState extends State<SignInView> {
                 ),
               ),
               SizedBox(height: AppSpacing.twentyVertical),
-              PrimaryButton(
-                onTap: () {
-                  Get.offAllNamed<dynamic>(AppRoutes.getLandingPageRoute());
-                },
-                text: 'Login',
+              ShakeWidget(
+                key: _shakeKey,
+                shakeOffset: 10.0,
+                shakeDuration: const Duration(milliseconds: 500),
+                child: PrimaryButton(
+                  onTap: () {
+                    if (_emailController.text.isNotEmpty &&
+                        _passwordController.text.isNotEmpty) {
+                      Get.offAllNamed<dynamic>(AppRoutes.getLandingPageRoute());
+                    } else {
+                      _shakeKey.currentState?.shake();
+                    }
+                  },
+                  text: 'Login',
+                ),
               ),
               SizedBox(height: AppSpacing.twentyVertical),
               const DividerWithText(),

@@ -19,13 +19,16 @@ class _LandingPageState extends State<LandingPage> {
   final List<Widget> _pages = [
     const HomeView(),
     const MyCoursesView(),
-   const CreateCourseView(),
+    const CreateCourseView(),
     const ActivityView(),
     const ProfileView(),
   ];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       extendBody: true,
       body: _pages[_currentIndex],
@@ -50,6 +53,7 @@ class _LandingPageState extends State<LandingPage> {
           ),
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
+            selectedItemColor: Colors.white,
             onTap: (index) {
               setState(() {
                 _currentIndex = index;
@@ -57,20 +61,26 @@ class _LandingPageState extends State<LandingPage> {
             },
             items: [
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppAssets.kHome),
+                icon: const Icon(
+                  Icons.home_outlined,
+                  color: Colors.grey,
+                ),
                 label: 'Home',
-                activeIcon: SvgPicture.asset(
-                  AppAssets.kHome,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.kSecondary,
-                    BlendMode.srcIn,
-                  ),
+                activeIcon: Icon(
+                  Icons.home,
+                  color: isDarkMode(context) ? Colors.white : Colors.grey,
                 ),
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppAssets.kBookOpen),
+                icon: const Icon(
+                  Icons.my_library_books_outlined,
+                  color: Colors.grey,
+                ),
                 label: 'my Courses',
-                activeIcon: SvgPicture.asset(AppAssets.kBookOpenFilled),
+                activeIcon: Icon(
+                  Icons.my_library_books,
+                  color: isDarkMode(context) ? Colors.white : Colors.grey,
+                ),
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -88,14 +98,20 @@ class _LandingPageState extends State<LandingPage> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppAssets.kActivity),
+                icon: const Icon(Icons.notifications_none_rounded),
                 label: 'Activity',
-                activeIcon: SvgPicture.asset(AppAssets.kActivityFilled),
+                activeIcon: Icon(
+                  Icons.notifications,
+                  color: isDarkMode(context) ? Colors.white : Colors.grey,
+                ),
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(AppAssets.kUser),
+                icon: const Icon(Icons.person_outline, color: Colors.grey),
                 label: 'Profile',
-                activeIcon: SvgPicture.asset(AppAssets.kUserFilled),
+                activeIcon: Icon(
+                  Icons.person_outline,
+                  color: isDarkMode(context) ? Colors.white : Colors.grey,
+                ),
               ),
             ],
           ),

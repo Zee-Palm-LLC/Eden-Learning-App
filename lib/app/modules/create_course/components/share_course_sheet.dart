@@ -1,6 +1,7 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/models/chat_model.dart';
 import 'package:eden_learning_app/app/models/course.dart';
+import 'package:eden_learning_app/app/modules/create_course/components/gift_course_card.dart';
 import 'package:eden_learning_app/app/modules/message/components/online_card.dart';
 import 'package:eden_learning_app/app/modules/widgets/buttons/buttons.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,9 @@ class ShareCourseSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,7 +23,7 @@ class ShareCourseSheet extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(AppSpacing.twentyVertical),
           child: CustomIconButton(
-            onTap: (){
+            onTap: () {
               Get.back<void>();
             },
             color: AppColors.kWhite.withOpacity(0.15),
@@ -30,7 +34,8 @@ class ShareCourseSheet extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           decoration: BoxDecoration(
-            color: AppColors.kWhite,
+            color:
+                isDarkMode(context) ? AppColors.kSecondary : AppColors.kWhite,
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(30.r),
             ),
@@ -47,43 +52,7 @@ class ShareCourseSheet extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 40.h),
-              Container(
-                padding: EdgeInsets.all(12.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: AppColors.kWhite,
-                  boxShadow: [AppColors.defaultShadow],
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 80.h,
-                      width: 80.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppSpacing.radiusTen),
-                        image: DecorationImage(
-                          image: AssetImage(coursesList[0].image),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(coursesList[0].name, style: AppTypography.kBold16),
-                          SizedBox(height: 20.h),
-                          Text(
-                            '${coursesList[0].lessons.length} Lessons',
-                            style: AppTypography.kLight14,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const GiftCourseCard(),
               SizedBox(height: 50.h),
               SizedBox(
                 height: 85.h,
@@ -100,7 +69,8 @@ class ShareCourseSheet extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.r),
                               color: AppColors.kPrimary.withOpacity(0.15),
                             ),
-                            child: const Icon(Icons.add, color: AppColors.kPrimary),
+                            child: const Icon(Icons.add,
+                                color: AppColors.kPrimary),
                           ),
                         ],
                       );

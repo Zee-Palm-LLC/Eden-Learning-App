@@ -11,6 +11,7 @@ class CreateLessons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           height: 185.h,
@@ -38,7 +39,6 @@ class CreateLessons extends StatelessWidget {
                   ],
                 );
               } else {
-                // data: dataList[index - 1];
                 return Column(
                   children: [
                     Container(

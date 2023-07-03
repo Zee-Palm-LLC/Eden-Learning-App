@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:eden_learning_app/app/data/constants/constants.dart';
 import 'package:eden_learning_app/app/models/category.dart';
 import 'package:eden_learning_app/app/modules/widgets/buttons/animated_button.dart';
+import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,24 +21,20 @@ class CustomChips extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return FadeIn(
-      delay: const Duration(milliseconds: 500) *index,
+      delay: const Duration(milliseconds: 500) * index,
       child: AnimatedButton(
         onTap: onTap,
-        child: Container(
-          height: 55.h,
-          padding: EdgeInsets.symmetric(horizontal: 22.w),
-          decoration: BoxDecoration(
-            color: isSelected ? AppColors.kPrimary : AppColors.kWhite,
-            borderRadius: BorderRadius.circular(15.r),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.kPrimary.withOpacity(0.2),
-                blurRadius: 7,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
+        child: PrimaryContainer(
+          color: isSelected
+              ? AppColors.kPrimary
+              : isDarkMode(context)
+                  ? Colors.black
+                  : AppColors.kWhite,
+          padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 14.h),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -54,7 +51,9 @@ class CustomChips extends StatelessWidget {
                 style: AppTypography.kBold16.copyWith(
                   color: isSelected
                       ? AppColors.kWhite
-                      : AppColors.kSecondary,
+                      : isDarkMode(context)
+                          ? Colors.white
+                          : AppColors.kSecondary,
                 ),
               ),
               SizedBox(width: 10.w),

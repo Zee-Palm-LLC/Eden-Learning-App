@@ -16,6 +16,9 @@ class UserTypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedButton(
@@ -27,19 +30,21 @@ class UserTypeCard extends StatelessWidget {
           alignment: Alignment.topCenter,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.r),
-            color: isSelected ? AppColors.kPrimary : AppColors.kWhite,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.kPrimary.withOpacity(0.2),
-                blurRadius: 7,
-                offset: const Offset(0, 5),
-              ),
-            ],
+            color: isSelected
+                ? AppColors.kPrimary
+                : isDarkMode(context)
+                    ? Colors.black
+                    : AppColors.kWhite,
+            boxShadow: [AppColors.defaultShadow],
           ),
           child: Text(
             text,
             style: AppTypography.kBold16.copyWith(
-              color: isSelected ? AppColors.kWhite : AppColors.kSecondary,
+              color: isSelected
+                  ? AppColors.kWhite
+                  : isDarkMode(context)
+                      ? Colors.white
+                      : AppColors.kSecondary,
             ),
           ),
         ),

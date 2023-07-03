@@ -66,7 +66,6 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.kWhite,
       appBar: CustomBackAppBar(
         leadingCallback: () {
           if (_currentIndex > 0) {
@@ -126,10 +125,15 @@ class _SignUpViewState extends State<SignUpView> with TickerProviderStateMixin {
             child: _currentIndex < 3
                 ? PrimaryButton(
                     onTap: () {
-                       FocusManager.instance.primaryFocus?.unfocus();
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.fastOutSlowIn,
+                      FocusScope.of(context).unfocus();
+                      Future<void>.delayed(const Duration(milliseconds: 500))
+                          .then(
+                        (value) => {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.fastOutSlowIn,
+                          ),
+                        },
                       );
                     },
                     text: 'Continue',

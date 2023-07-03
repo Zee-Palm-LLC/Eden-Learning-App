@@ -1,9 +1,10 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/quiz/components/quiz_option_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizTwo extends StatefulWidget {
-  const QuizTwo({super.key});
+  const QuizTwo({Key? key}) : super(key: key);
 
   @override
   State<QuizTwo> createState() => _QuizTwoState();
@@ -11,6 +12,7 @@ class QuizTwo extends StatefulWidget {
 
 class _QuizTwoState extends State<QuizTwo> {
   int selectedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,44 +28,19 @@ class _QuizTwoState extends State<QuizTwo> {
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             itemBuilder: (context, index) {
-              return GestureDetector(
+              return QuizOptionCard(
                 onTap: () {
-                  selectedIndex = index;
-                  setState(() {});
+                  setState(() {
+                    selectedIndex = index;
+                  });
                 },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  height: selectedIndex == index ? 80.h : 60.h,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: selectedIndex == index
-                        ? AppColors.kPrimary
-                        : AppColors.kWhite,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Contrast', style: AppTypography.kBold16),
-                      Container(
-                        height: 24.h,
-                        width: 24.w,
-                        padding: EdgeInsets.all(5.h),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.r),
-                          color: AppColors.kSecondary.withOpacity(0.05),
-                        ),
-                        child: selectedIndex == index
-                            ? Icon(
-                                Icons.done,
-                                color: AppColors.kWhite,
-                                size: 16.h,
-                              )
-                            : const SizedBox(),
-                      ),
-                    ],
-                  ),
-                ),
+                isSelected: selectedIndex == index,
+                options: [
+                  'Symmetry',
+                  'Contrast',
+                  'Repetition',
+                  'White Space',
+                ][index],
               );
             },
             separatorBuilder: (context, index) => SizedBox(height: 20.h),

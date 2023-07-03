@@ -1,4 +1,5 @@
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/modules/widgets/containers/primary_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,20 +17,10 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.kWhite,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.kPrimary.withOpacity(0.2),
-            blurRadius: 7,
-            offset: const Offset(0, 5),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(
-          AppSpacing.radiusTen,
-        ),
-      ),
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
+    return PrimaryContainer(
       child: TextFormField(
         controller: controller,
         enabled: isEnabled,
@@ -38,7 +29,13 @@ class SearchField extends StatelessWidget {
           hintText: 'Search courses, names, etc.',
           prefixIcon: IconButton(
             onPressed: null,
-            icon: SvgPicture.asset(AppAssets.kSearch),
+            icon: SvgPicture.asset(
+              AppAssets.kSearch,
+              colorFilter: ColorFilter.mode(
+                isDarkMode(context) ? Colors.white : Colors.black,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
         ),
       ),

@@ -5,8 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback leadingCallback;
+  final Color? iconColor;
+  final Widget? title;
   const CustomBackAppBar({
     required this.leadingCallback,
+    this.iconColor,
+    this.title,
     Key? key,
   }) : super(key: key);
 
@@ -22,8 +26,11 @@ class CustomBackAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: CustomIconButton(
           onTap: leadingCallback,
           icon: AppAssets.kArrowBackIos,
+          color: iconColor,
         ),
       ),
+      centerTitle: true,
+      title: title,
     );
   }
 

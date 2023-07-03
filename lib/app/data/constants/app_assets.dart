@@ -53,6 +53,7 @@ class AppAssets {
   static String kLifeStyle = 'assets/icons/lifestyle.svg';
   static String kCoding = 'assets/icons/coding.svg';
   static String kCalendar = 'assets/icons/calendar.svg';
+  static String kTriangleUp = 'assets/icons/triangle-up.svg';
 
   // Images.
   static String kTeacher1 = 'assets/images/teacher1.jpg';

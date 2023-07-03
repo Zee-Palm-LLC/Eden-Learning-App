@@ -9,12 +9,19 @@ class DateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w),
         decoration: BoxDecoration(
-          color: selectedIndex ? AppColors.kPrimary : AppColors.kWhite,
+          color: selectedIndex
+              ? AppColors.kPrimary
+              : isDarkMode(context)
+                  ? Colors.black
+                  : AppColors.kWhite,
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(

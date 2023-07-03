@@ -16,12 +16,16 @@ class CustomTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return TextButton(
       onPressed: onPressed,
       child: Text(
         text,
         style: AppTypography.kBold14.copyWith(
-          color: color ?? AppColors.kPrimary,
+          color: color ??
+              (isDarkMode(context) ? AppColors.kWhite : AppColors.kPrimary),
           fontSize: fontSize,
         ),
       ),

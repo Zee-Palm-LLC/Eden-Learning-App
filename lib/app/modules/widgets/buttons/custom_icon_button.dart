@@ -46,6 +46,8 @@ class _CustomIconButtonState extends State<CustomIconButton>
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
         _controller.forward().then((_) {
@@ -67,7 +69,8 @@ class _CustomIconButtonState extends State<CustomIconButton>
           width: widget.size ?? 40.w,
           padding: EdgeInsets.all(5.h),
           decoration: BoxDecoration(
-            color: widget.color ?? AppColors.kWhite,
+            color: widget.color ??
+                (isDarkMode(context) ? Colors.black : AppColors.kWhite),
             shape: BoxShape.circle,
           ),
           child: SvgPicture.asset(

@@ -1,4 +1,6 @@
+import 'package:eden_learning_app/app/controllers/theme_controller.dart';
 import 'package:eden_learning_app/app/data/constants/constants.dart';
+import 'package:eden_learning_app/app/data/helpers/theme_helper.dart';
 import 'package:eden_learning_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +21,8 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.put(ThemeController());
+    debugPrint(themeController.theme);
     return ScreenUtilInit(
       designSize: const Size(375, 844),
       builder: (context, child) {
@@ -30,9 +34,12 @@ class Main extends StatelessWidget {
           child: GetMaterialApp(
             title: 'Eden',
             debugShowCheckedModeBanner: false,
-            scrollBehavior: const ScrollBehavior().copyWith(physics: const BouncingScrollPhysics()),
+            scrollBehavior: const ScrollBehavior()
+                .copyWith(physics: const BouncingScrollPhysics()),
             defaultTransition: Transition.fadeIn,
             theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: getThemeMode(themeController.theme),
             locale: const Locale('en_US'),
             initialRoute: AppRoutes.getOnboardingRoute(),
             getPages: AppRoutes.routes,

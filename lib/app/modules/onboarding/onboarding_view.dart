@@ -23,10 +23,13 @@ class _OnboardingViewState extends State<OnboardingView> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(customOverlay);
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+    SystemChrome.setSystemUIOverlayStyle(
+      isDarkMode(context) ? defaultOverlay : customOverlay,
+    );
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.kWhite,
       appBar: _currentIndex > 0
           ? CustomBackAppBar(
               leadingCallback: () {

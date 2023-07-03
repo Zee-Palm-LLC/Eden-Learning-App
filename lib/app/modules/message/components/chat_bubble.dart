@@ -9,6 +9,9 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Align(
       alignment: chat.messageType == 'receiver'
           ? Alignment.centerRight
@@ -17,8 +20,12 @@ class ChatBubble extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         decoration: BoxDecoration(
           color: chat.messageType == 'receiver'
-              ? AppColors.kPrimary
-              : AppColors.kPrimary.withOpacity(0.08),
+              ? (isDarkMode(context)
+                  ? AppColors.kSecondary
+                  : AppColors.kPrimary)
+              : (isDarkMode(context)
+                  ? AppColors.kWhite
+                  : AppColors.kPrimary.withOpacity(0.08)),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Text(

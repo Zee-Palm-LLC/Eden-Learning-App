@@ -20,6 +20,9 @@ class CustomMenuCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return AnimatedButton(
       onTap: onTap,
       child: Column(
@@ -31,8 +34,10 @@ class CustomMenuCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isSelected
-                  ? AppColors.kWhite
-                  : AppColors.kPrimary.withOpacity(0.15),
+                  ? (isDarkMode(context) ? Colors.black : AppColors.kWhite)
+                  : (isDarkMode(context)
+                      ? Colors.black.withOpacity(0.15)
+                      : AppColors.kPrimary.withOpacity(0.15)),
               boxShadow: isSelected ? [AppColors.defaultShadow] : null,
             ),
             child: SvgPicture.asset(icon),
